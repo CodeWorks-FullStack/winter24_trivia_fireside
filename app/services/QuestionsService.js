@@ -1,8 +1,11 @@
+import { triviaApi } from "./AxiosService.js";
+
 class QuestionsService {
-  getQuestions() {
+  async getQuestions() {
     console.log('getting questions');
 
-    const response = 
+    const response = await triviaApi.get('?amount=10&type=multiple')
+    console.log('📡 got questions', response.data);
   }
 
 }
