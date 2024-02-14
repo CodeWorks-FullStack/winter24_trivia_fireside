@@ -1,6 +1,9 @@
 import { questionsService } from "../services/QuestionsService.js";
 import { Pop } from "../utils/Pop.js";
 
+
+
+
 export class QuestionsController {
   constructor () {
     this.getQuestions()

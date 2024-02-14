@@ -7,6 +7,27 @@ export class Question {
     this.correctAnswer = data.correct_answer
     this.incorrectAnswers = data.incorrect_answers
   }
+
+  get GameHTMLTemplate() {
+    return `
+    <div class="col-12 text-center">
+      <h1>${this.question}</h1>
+      <h2>${this.category} ${this.difficulty}</h2>
+      <div class="mb-3">
+        <button class="btn btn-success fs-1 w-75">ANSWER 1</button>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success fs-1 w-75">ANSWER 1</button>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success fs-1 w-75">ANSWER 1</button>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success fs-1 w-75">ANSWER 1</button>
+      </div>
+    </div>
+    `
+  }
 }
 
 // let data = {
