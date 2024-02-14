@@ -11,6 +11,11 @@ class ObservableAppState extends EventEmitter {
    * @type {Question[]}
    */
   questions = []
+
+  /**
+   * @type {Question | null}
+   */
+  activeQuestion = null
 }
 
 export const AppState = createObservableProxy(new ObservableAppState())

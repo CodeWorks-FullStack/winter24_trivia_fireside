@@ -3,6 +3,15 @@ import { Question } from "../models/Question.js";
 import { triviaApi } from "./AxiosService.js";
 
 class QuestionsService {
+  answerQuestion(userAnswer) {
+    const question = AppState.activeQuestion
+
+    if (question.correctAnswer != userAnswer) {
+      throw new Error(`${userAnswer} is incorrect`)
+    }
+
+    this.setActiveQuestion()
+  }
   async getQuestions() {
     console.log('getting questions');
 
@@ -13,6 +22,19 @@ class QuestionsService {
 
     AppState.questions = newQuestions
 
+    this.setActiveQuestion()
+  }
+
+
+  setActiveQuestion() {
+    const nextQuestion = AppState.questions.shift()
+
+    if (!nextQuestion) {
+      this.getQuestions()
+      return
+    }
+
+    AppState.activeQuestion = nextQuestion
   }
 
 }

@@ -6,6 +6,7 @@ export class Question {
     this.question = data.question
     this.correctAnswer = data.correct_answer
     this.incorrectAnswers = data.incorrect_answers
+
   }
 
   get GameHTMLTemplate() {
@@ -13,20 +14,33 @@ export class Question {
     <div class="col-12 text-center">
       <h1>${this.question}</h1>
       <h2>${this.category} ${this.difficulty}</h2>
-      <div class="mb-3">
-        <button class="btn btn-success fs-1 w-75">ANSWER 1</button>
-      </div>
-      <div class="mb-3">
-        <button class="btn btn-success fs-1 w-75">ANSWER 1</button>
-      </div>
-      <div class="mb-3">
-        <button class="btn btn-success fs-1 w-75">ANSWER 1</button>
-      </div>
-      <div class="mb-3">
-        <button class="btn btn-success fs-1 w-75">ANSWER 1</button>
-      </div>
+      ${this.AnswerButtons}
     </div>
     `
+  }
+
+  get AllAnswers() {
+    const randomIndex = Math.floor(Math.random() * (this.incorrectAnswers.length + 1))
+
+    const answers = [...this.incorrectAnswers]
+
+    answers.splice(randomIndex, 0, this.correctAnswer)
+
+    return answers
+  }
+
+  get AnswerButtons() {
+    let htmlString = ''
+
+    this.AllAnswers.forEach(answer => {
+      htmlString += `
+      <div class="mb-3">
+        <button onclick="app.QuestionsController.answerQuestion('${answer}')"  class="btn btn-success fs-1 w-75">${answer}</button>
+      </div>
+      `
+    });
+
+    return htmlString
   }
 }
 
