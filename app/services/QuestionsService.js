@@ -1,6 +1,8 @@
 class QuestionsService {
   getQuestions() {
     console.log('getting questions');
+
+    const response = 
   }
 
 }
